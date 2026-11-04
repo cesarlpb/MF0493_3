@@ -1,0 +1,805 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>MF0493_3 · Implantación de aplicaciones web · Inkor</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reset.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/theme/black.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/highlight/monokai.css">
+  <style>
+    .reveal h1, .reveal h2, .reveal h3 { text-transform: none; }
+    .reveal p, .reveal li { font-size: 0.95em; }
+    .reveal table {
+      font-size: 0.62em;
+      width: 100%;
+      max-width: 46em;
+      margin: 0.4em 0;
+      border-collapse: collapse;
+      table-layout: fixed;
+    }
+    .reveal table th,
+    .reveal table td {
+      padding: 0.35em 0.55em;
+      vertical-align: top;
+      line-height: 1.35;
+      text-align: left;
+      word-break: normal;
+      overflow-wrap: break-word;
+      hyphens: none;
+    }
+    .reveal table th { font-weight: 600; }
+    .reveal .slide-compact h2,
+    .reveal .slide-compact h3 { margin-bottom: 0.35em; }
+    .reveal .slide-compact ul { margin: 0.2em 0 0.35em; }
+    .reveal .slide-compact li {
+      font-size: 0.78em;
+      line-height: 1.32;
+      margin-bottom: 0.22em;
+    }
+    .reveal .slide-compact table { font-size: 0.52em; margin: 0.2em 0 0; }
+    .reveal .slide-compact table th,
+    .reveal .slide-compact table td {
+      padding: 0.28em 0.4em;
+      line-height: 1.28;
+    }
+    .reveal .slide-compact h2 { font-size: 1.28em; margin-bottom: 0.25em; }
+    .reveal .slide-compact blockquote {
+      font-size: 0.68em;
+      margin: 0.35em 0 0;
+      padding: 0.35em 0 0.35em 0.75em;
+      line-height: 1.3;
+    }
+    .reveal .slides { text-align: left; }
+    .reveal .slides section { padding-top: 0.3em; }
+    .reveal .slides section.slide-subtopic {
+      display: flex !important;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 64vh;
+      text-align: center !important;
+    }
+    .reveal .slides section.slide-subtopic h2 {
+      font-size: clamp(1.12em, 3.5vw, 1.52em);
+      font-weight: 600;
+      margin: 0;
+      padding: 1.1rem 1.35rem;
+      line-height: 1.28;
+      max-width: 22em;
+      border-top: 1px solid rgba(255, 255, 255, 0.22);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+    }
+    .reveal .slides section.slide-learning-outline { padding-top: 0.1em; }
+    .reveal .slide-learning-outline h2,
+    .reveal .slide-learning-outline h3 { margin-bottom: 0.35em; }
+    .reveal .slide-learning-outline ol,
+    .reveal .slide-learning-outline ul {
+      margin: 0.15em 0 0;
+      padding-left: 1.15em;
+      max-width: 38em;
+    }
+    .reveal .slide-learning-outline li {
+      margin-bottom: 0.32em;
+      line-height: 1.38;
+      padding-left: 0.15em;
+    }
+    .reveal .slide-learning-outline blockquote {
+      margin: 0.55em 0 0;
+      font-size: 0.78em;
+      line-height: 1.35;
+    }
+    .reveal .topic-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.85rem 1.25rem;
+      max-width: 42em;
+      margin-top: 0.5rem;
+    }
+    .reveal .topic-grid .topic-card {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 8px;
+      padding: 0.75rem 0.9rem;
+    }
+    .reveal .topic-grid .topic-card h3 {
+      font-size: 0.78em;
+      margin: 0 0 0.35em;
+      color: #7ec8e3;
+    }
+    .reveal .topic-grid .topic-card p {
+      font-size: 0.72em;
+      margin: 0;
+      opacity: 0.92;
+      line-height: 1.38;
+    }
+    .reveal .mermaid {
+      margin: 0.5rem auto 0;
+      max-width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+    .reveal .mermaid svg {
+      max-width: min(96vw, 880px);
+      max-height: 42vh;
+      height: auto !important;
+    }
+    .title-slide {
+      text-align: center !important;
+      display: flex !important;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 70vh;
+    }
+    .title-slide .brand {
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-size: 0.72em;
+      opacity: 0.75;
+      margin: 0 0 1.1rem;
+    }
+    .title-slide .session-date {
+      font-size: 0.72em;
+      opacity: 0.85;
+      margin-top: 0.5em;
+    }
+    .about-slide {
+      display: flex !important;
+      align-items: center;
+      justify-content: center;
+      min-height: 62vh;
+    }
+    .about-inner {
+      display: flex;
+      align-items: center;
+      gap: 2.25rem;
+      max-width: 880px;
+      margin: 0 auto;
+      text-align: left;
+    }
+    .about-photo {
+      width: min(38vw, 220px);
+      height: auto;
+      border-radius: 12px;
+      object-fit: cover;
+      flex-shrink: 0;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+    }
+    .about-text .about-role { font-size: 0.72em; opacity: 0.88; line-height: 1.4; }
+    .about-text .about-instructor { font-size: 0.65em; opacity: 0.82; margin-top: 0.35em; }
+    .reveal blockquote {
+      font-size: 0.82em;
+      font-style: italic;
+      border-left: 3px solid #7ec8e3;
+      padding-left: 1em;
+      margin: 1em 0 0;
+      opacity: 0.92;
+    }
+  </style>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <section class="title-slide">
+        <p class="brand">Inkor Formaciones</p>
+        <h1 style="font-size: 1.22em;">Implantación de aplicaciones web</h1>
+        <h2 style="font-size: 0.78em;">MF0493_3 · Internet, intranet y extranet</h2>
+        <hr style="width: 60%; height: 1px; border: 0; margin: 0.75em auto; background-color: white;" />
+        <p style="font-size: 0.82em; max-width: 34em; margin: 0 auto; line-height: 1.45;">
+          Arquitectura · despliegue · verificación · documentación
+        </p>
+        <p class="session-date">90 horas · aula virtual · 3 nov – 18 dic 2026</p>
+      </section>
+
+      <section class="about-slide">
+        <div class="about-inner">
+          <img class="about-photo" src="img/instructor-profile.png" alt="César Patiño" />
+          <div class="about-text">
+            <h1 style="font-size: 1.25em;">Sobre mí</h1>
+            <h2 style="font-size: 1.05em;">César Patiño</h2>
+            <hr style="width: 100%; height: 1px; border: 0; margin: 0.75em auto; background-color: white;" />
+            <p class="about-role">
+              Desarrollador full-stack senior y formador
+              <br><br>
+              +12 años de experiencia · aplicaciones web y APIs
+              <br><br>
+              Despliegue · Git · pruebas · documentación
+            </p>
+            <hr>
+            <p class="about-instructor">Formador @ Inkor Formaciones</p>
+          </div>
+        </div>
+      </section>
+
+      <section data-markdown
+               data-separator="^---$"
+               data-separator-vertical="^--$"
+               data-separator-notes="^Note:">
+        <script type="text/template">
+<!-- .slide: class="slide-learning-outline" -->
+
+### El curso
+
+| | |
+|---|---|
+| **Duración** | 90 horas |
+| **Modalidad** | Aula virtual |
+| **Fechas** | 3 de noviembre – 18 de diciembre de 2026 |
+| **Horario** | Lunes a jueves, 18:00–21:30 |
+| **Ubicación** | Madrid |
+| **Cierre** | 18 de diciembre, 18:00–20:30 |
+
+> Para superarlo: al menos el **75%** de los controles de seguimiento, y el **examen presencial**.
+
+---
+
+<!-- .slide: class="slide-compact" -->
+
+## Para qué sirve este módulo
+
+Partimos de un **diseño técnico ya elaborado**.
+
+A partir de ahí construimos, implantamos, verificamos y documentamos una aplicación web en un entorno distribuido.
+
+| Competencia | En la práctica |
+|---|---|
+| **Implantar** | La aplicación queda accesible en el entorno que le toca |
+| **Verificar** | Comprobamos que responde como debe |
+| **Documentar** | Otra persona puede instalarla, operarla y mantenerla |
+
+---
+
+<!-- .slide: class="slide-learning-outline" -->
+
+### Mapa del módulo
+
+| Bloque | Contenido |
+|---|---|
+| **1. Internet** | Historia, servicios de red, TCP/IP, cortafuegos |
+| **2. La World Wide Web** | Arquitectura, clientes, servidores, infraestructura |
+| **3. Aplicaciones web** | Tipos y tecnologías de desarrollo |
+| **4. Desarrollo y despliegue** | Entornos, herramientas, pruebas, certificados |
+| **5. Verificación** | Tipos de prueba, herramientas, confidencialidad |
+| **6. Control de versiones** | Concepto, operaciones, herramientas |
+| **7. Documentación** | Estructura, formatos, versiones de la documentación |
+
+---
+
+<!-- .slide: class="slide-compact" -->
+
+## El caso que recorre el módulo
+
+**Taller Norte**, un taller con tres puertas de entrada.
+
+<div class="topic-grid">
+  <div class="topic-card">
+    <h3>Internet</h3>
+    <p>Web pública: horario, servicios y formulario de cita.</p>
+  </div>
+  <div class="topic-card">
+    <h3>Intranet</h3>
+    <p>Gestión interna: órdenes de trabajo, stock y personal.</p>
+  </div>
+  <div class="topic-card">
+    <h3>Extranet</h3>
+    <p>Acceso de proveedores: pedidos y albaranes, con cuenta propia.</p>
+  </div>
+</div>
+
+Misma familia de tecnologías. **Distinto perímetro, distinto público, distinta documentación.**
+
+---
+
+<!-- .slide: class="slide-compact" -->
+
+## Con qué vamos a trabajar
+
+| Herramienta | Para qué la usamos |
+|---|---|
+| **Visual Studio Code** | Código, terminal, Git y extensiones |
+| **Navegador** | Cliente web y herramientas de desarrollo |
+| **Postman** | Peticiones HTTP, entornos y comprobaciones |
+| **Git** | Historial de la aplicación y de su documentación |
+
+---
+
+<!-- .slide: class="slide-subtopic" -->
+
+### 1 · Internet
+
+---
+
+<!-- .slide: class="slide-compact" -->
+
+## Tres redes, un mismo lenguaje
+
+| | Internet | Intranet | Extranet |
+|---|---|---|---|
+| **Quién entra** | Público | Personal de la organización | Externos autorizados |
+| **Dónde vive** | Red pública | Red privada | Extensión controlada de la privada |
+| **Ejemplo** | Citas del taller | Órdenes de trabajo | Portal de proveedores |
+| **Riesgo propio** | Exposición | Fuga interna | Una cuenta de más, o una de menos |
+
+Los tres usan **TCP/IP**. Cambia quién puede llegar, y hasta dónde.
+
+---
+
+<!-- .slide: class="slide-compact" -->
+
+## Una historia corta, para situarnos
+
+| Año | Qué aparece |
+|---|---|
+| **1969** | ARPANET: redes que sobreviven a un corte |
+| **1983** | TCP/IP como lenguaje común |
+| **1991** | La Web: documentos enlazados por HTTP |
+| **años 2000** | Banda ancha y aplicaciones que generan la página |
+| **hoy** | HTTPS por defecto, APIs y varios entornos de despliegue |
+
+La Web es un servicio que corre **encima** de Internet. Internet es la red.
+
+---
+
+<!-- .slide: class="slide-compact" -->
+
+## Servicios de red que sí vamos a tocar
+
+| Servicio | Qué resuelve | Puerto habitual |
+|---|---|---|
+| **DNS** | Nombre → dirección IP | 53 |
+| **HTTP / HTTPS** | La Web | 80 / 443 |
+| **SSH** | Administración remota | 22 |
+| **SMTP** | Envío de correo | 587 |
+| **Base de datos** | Datos de la aplicación | 3306, 5432… |
+
+El puerto de la base de datos se queda en la red interna. A Internet se publica el **443**.
+
+---
+
+<!-- .slide: class="slide-compact" -->
+
+## TCP/IP en cuatro capas
+
+| Capa | Pregunta que responde | Ejemplos |
+|---|---|---|
+| **Aplicación** | ¿Qué servicio es? | HTTP, DNS, SSH |
+| **Transporte** | ¿Cómo llega de extremo a extremo? | TCP, UDP |
+| **Internet** | ¿Por qué redes pasa? | IP |
+| **Acceso** | ¿Cómo sale del equipo? | Ethernet, Wi-Fi |
+
+**TCP** abre una conversación y garantiza el orden. **UDP** envía sin esa conversación: DNS lo usa a menudo.
+
+---
+
+<!-- .slide: class="slide-compact" -->
+
+## Cortafuegos: la puerta, con lista
+
+Una regla mira **origen, destino, puerto y protocolo**, y decide permitir o denegar.
+
+| Origen | Destino | Puerto | Decisión |
+|---|---|---|---|
+| Internet | Servidor web | 443 | Permitir |
+| Internet | Base de datos | 3306 | Denegar |
+| Intranet | Base de datos | 3306 | Permitir |
+| Internet | Administración SSH | 22 | Denegar en la pública |
+
+El cortafuegos es el perímetro. La aplicación, además, autentica y autoriza.
+
+---
+
+<!-- .slide: class="slide-subtopic" -->
+
+### 2 · La World Wide Web
+
+---
+
+<!-- .slide: class="slide-compact" -->
+
+## Arquitectura web
+
+<div class="mermaid">
+flowchart LR
+  B[Navegador] -->|HTTPS| W[Servidor web]
+  W --> A[Aplicación]
+  A --> D[(Base de datos)]
+</div>
+
+El navegador pide. El servidor web recibe. La aplicación decide. La base de datos guarda.
+
+Cada flecha es un lugar donde la petición puede **fallar, tardar o quedar registrada**.
+
+---
+
+<!-- .slide: class="slide-compact" -->
+
+## Cliente y servidor
+
+| | Cliente | Servidor |
+|---|---|---|
+| **Rol** | Pide y presenta | Escucha y responde |
+| **Ejemplos** | Navegador, Postman, otra aplicación | Nginx, Apache, el runtime de la app |
+| **Lo que aporta** | URL, método, cabeceras, cuerpo | Código de estado, cabeceras, cuerpo |
+| **En Taller Norte** | La ciudadana, el personal, el proveedor | La misma plataforma, con rutas distintas |
+
+Una API también tiene cliente: a veces el cliente es **otro servidor**.
+
+---
+
+<!-- .slide: class="slide-compact" -->
+
+## Tres servidores, tres trabajos
+
+| Pieza | Trabajo | Si se cae |
+|---|---|---|
+| **Servidor web** | Recibe HTTPS, sirve estáticos, reenvía | Nadie entra |
+| **Servidor de aplicaciones** | Ejecuta la lógica | La página abre y la operación falla |
+| **Base de datos** | Persiste citas, stock, usuarios | La lógica no tiene dónde leer ni escribir |
+
+En un equipo de aula pueden vivir los tres **en la misma máquina**. En un despliegue real, se separan.
+
+---
+
+<!-- .slide: class="slide-compact" -->
+
+## Infraestructura
+
+<div class="topic-grid">
+  <div class="topic-card">
+    <h3>Hardware</h3>
+    <p>CPU, memoria, disco y red del equipo que hospeda el servicio.</p>
+  </div>
+  <div class="topic-card">
+    <h3>Sistema</h3>
+    <p>Sistema operativo, usuarios del sistema, actualizaciones, copias.</p>
+  </div>
+  <div class="topic-card">
+    <h3>Software de servicio</h3>
+    <p>Servidor web, runtime, base de datos, certificado TLS.</p>
+  </div>
+  <div class="topic-card">
+    <h3>Operación</h3>
+    <p>Logs, monitorización, quién despliega y cómo se vuelve atrás.</p>
+  </div>
+</div>
+
+Implantar es dejar esto **escrito y repetible**, no solo “en mi portátil funciona”.
+
+---
+
+<!-- .slide: class="slide-subtopic" -->
+
+### 3 · Aplicaciones web
+
+---
+
+<!-- .slide: class="slide-compact" -->
+
+## Tipos que vamos a distinguir
+
+| Tipo | Dónde está la lógica | Encaja con |
+|---|---|---|
+| **Estática** | El navegador pinta ficheros | Horario y servicios públicos |
+| **Dinámica de servidor** | El servidor genera el HTML | Intranet de órdenes de trabajo |
+| **SPA + API** | El navegador aplica; el servidor expone datos | Panel con mucha interacción |
+| **API** | Contrato entre sistemas, sin página | El proveedor integra sus pedidos |
+
+El tipo se elige por el **uso**, y condiciona las pruebas y la documentación.
+
+---
+
+<!-- .slide: class="slide-compact" -->
+
+## Tecnologías de desarrollo
+
+| Capa | Piezas habituales | Responsabilidad |
+|---|---|---|
+| **Presentación** | HTML, CSS, JavaScript | Lo que la persona ve y maneja |
+| **Lógica** | Un lenguaje de servidor y su framework | Reglas: citas, stock, permisos |
+| **Datos** | SQL o el almacén que corresponda | Lo que tiene que seguir ahí mañana |
+| **Contrato** | HTTP, JSON, un esquema de API | Cómo hablan cliente y servidor |
+
+Visual Studio Code es el editor. El lenguaje del proyecto se fija en el diseño técnico, no en la moda de la semana.
+
+---
+
+<!-- .slide: class="slide-subtopic" -->
+
+### 4 · Desarrollo y despliegue
+
+---
+
+<!-- .slide: class="slide-compact" -->
+
+## Tres entornos
+
+| Entorno | Datos | Quién entra | Para qué existe |
+|---|---|---|---|
+| **Local** | De prueba, inventados | Quien desarrolla | Construir |
+| **Preproducción** | Copia controlada | Quien valida | Verificar el despliegue |
+| **Producción** | Reales | Personas usuarias | El servicio de verdad |
+
+Un fallo de configuración se caza en preproducción. En producción ya tiene público.
+
+---
+
+<!-- .slide: class="slide-compact" -->
+
+## Del cambio al servicio
+
+<div class="mermaid">
+flowchart LR
+  C[Cambio en Git] --> P[Pruebas]
+  P --> S[Preproducción]
+  S --> R[Revisión]
+  R --> O[Producción]
+</div>
+
+| Herramienta | Momento |
+|---|---|
+| **VS Code** | Escribir y revisar el cambio |
+| **Postman** | Lanzar la petición y guardar la colección |
+| **Navegador** | Recorrer el flujo como lo hará la persona |
+| **Git** | Dejar versión antes de publicar |
+
+---
+
+<!-- .slide: class="slide-compact" -->
+
+## HTTPS y certificados
+
+El certificado responde a cuatro preguntas:
+
+| Pregunta | Si falla |
+|---|---|
+| ¿Lo firma una autoridad de confianza? | El navegador avisa |
+| ¿El nombre es el de este sitio? | No es el servidor que creemos |
+| ¿Está en vigor? | Caducado: el servicio “se rompe” un lunes |
+| ¿La cadena intermedia es válida? | El cliente no completa la confianza |
+
+En intranet puede firmar una **autoridad interna**, instalada en los equipos de la organización. En internet, una autoridad pública.
+
+---
+
+<!-- .slide: class="slide-subtopic" -->
+
+### 5 · Verificación
+
+---
+
+<!-- .slide: class="slide-compact" -->
+
+## Tipos de prueba
+
+| Tipo | Pregunta |
+|---|---|
+| **Funcional** | ¿Hace lo que describe el diseño? |
+| **Integración** | ¿Web, aplicación y datos se hablan? |
+| **Regresión** | ¿Lo que ya iba sigue yendo? |
+| **Seguridad** | ¿Entra quien debe, y solo hasta donde debe? |
+| **Rendimiento** | ¿Aguanta el uso previsto? |
+| **Aceptación** | ¿Cumple el criterio acordado para darla por buena? |
+
+Verificar es dejar **evidencia**: qué se probó, con qué datos, y qué resultado salió.
+
+---
+
+<!-- .slide: class="slide-compact" -->
+
+## Herramientas de verificación
+
+| Herramienta | Qué deja visto |
+|---|---|
+| **Postman** | Método, URL, estado, cuerpo y el entorno usado |
+| **Navegador** | Flujo real, consola, cabeceras, certificado |
+| **Logs del servidor** | La petición que sí llegó, y el error que no se vio fuera |
+| **Git** | Qué versión exacta se estaba probando |
+
+Una captura sin versión y sin entorno no sirve para repetir la prueba.
+
+---
+
+<!-- .slide: class="slide-compact" -->
+
+## Confidencialidad y control de calidad
+
+| Hábito | Por qué |
+|---|---|
+| Datos de prueba inventados | Un volcado de producción no viaja al portátil |
+| Cuentas distintas por entorno | La clave de producción no está en una colección compartida |
+| Mínimo privilegio | Proveedor, personal y admin no comparten rol |
+| Criterio de hecho, escrito | “Funciona” se convierte en una lista comprobable |
+| Evidencias junto a la versión | Dentro de un mes se puede reconstruir qué se validó |
+
+La calidad aquí es **repetir el mismo criterio**, no probar más a ojo.
+
+---
+
+<!-- .slide: class="slide-subtopic" -->
+
+### 6 · Control de versiones
+
+---
+
+<!-- .slide: class="slide-compact" -->
+
+## Qué problema resuelve
+
+Una versión es un estado del trabajo con **autor, fecha y mensaje**.
+
+| Tipo | Idea | Ejemplo |
+|---|---|---|
+| **Local** | Copias en carpetas | `proyecto-final-2` |
+| **Centralizado** | Un servidor guarda la historia | Subversion |
+| **Distribuido** | Cada clon tiene la historia completa | **Git** |
+
+Git es la herramienta del módulo. El remoto (GitHub, GitLab u otro) es donde el equipo se encuentra.
+
+---
+
+<!-- .slide: class="slide-compact" -->
+
+## Operaciones básicas
+
+| Operación | Qué consigue |
+|---|---|
+| `status` | Qué ha cambiado |
+| `add` | Qué entra en la próxima versión |
+| `commit` | Guarda la versión, con un mensaje que explica el porqué |
+| `push` | Publica esa versión en el remoto |
+| `pull` | Trae lo que otras personas han publicado |
+| `branch` | Abre una línea de trabajo sin pisar la principal |
+
+El mensaje del commit nombra el cambio: “Añade el alta de cita”, no “update”.
+
+---
+
+<!-- .slide: class="slide-compact" -->
+
+## Qué entra en el repositorio
+
+| Sí | No |
+|---|---|
+| Código y configuración de ejemplo | Contraseñas y certificados privados |
+| Colección de Postman sin secretos | Volcados de datos reales |
+| Documentación de despliegue | La carpeta de dependencias generada |
+| Evidencias de prueba acordadas | El entorno local de cada persona |
+
+Lo que no debe publicarse se declara en `.gitignore` **antes** del primer commit incómodo.
+
+---
+
+<!-- .slide: class="slide-subtopic" -->
+
+### 7 · Documentación
+
+---
+
+<!-- .slide: class="slide-compact" -->
+
+## Documentar es parte de implantar
+
+Sin documento, la aplicación solo funciona mientras está cerca quien la construyó.
+
+| Lector | Pregunta que tiene que poder responder |
+|---|---|
+| **Quien desarrolla** | ¿Cómo está partida y cómo se arranca? |
+| **Quien despliega** | ¿Qué hay que instalar, configurar y comprobar? |
+| **Quien opera** | ¿Dónde miro si falla, y cómo vuelvo atrás? |
+| **Quien usa** | ¿Cómo completo la tarea, con su rol? |
+
+---
+
+<!-- .slide: class="slide-compact" -->
+
+## Estructura que vamos a usar
+
+1. **Propósito** y a quién va dirigida
+2. **Arquitectura**: piezas y en qué red vive cada una
+3. **Entornos**: local, preproducción, producción
+4. **Puesta en marcha**: pasos y comprobación final
+5. **Accesos y certificados**: sin pegar secretos
+6. **Pruebas**: casos y evidencias
+7. **Explotación**: copias, logs, incidencias
+
+Cada documento indica **versión de la aplicación** a la que corresponde.
+
+---
+
+<!-- .slide: class="slide-compact" -->
+
+## Formatos y versiones de la documentación
+
+| Formato | Cuándo |
+|---|---|
+| **Markdown** | Vive en el repositorio, junto al código |
+| **PDF** | Entrega cerrada, la que se archiva |
+| **OpenAPI** | Cuando hay una API que otros consumen |
+| **Diagrama** | Arquitectura, redes y flujo de despliegue |
+
+La documentación se versiona con Git, igual que el código. Un despliegue y su manual salen de **la misma versión**.
+
+---
+
+<!-- .slide: class="slide-learning-outline" -->
+
+### Al cierre del módulo
+
+1. Situar una función en internet, intranet o extranet, y justificar el perímetro
+2. Seguir una petición desde el navegador hasta los datos
+3. Distinguir servidor web, aplicación y base de datos
+4. Preparar un cambio con prueba, versión y entorno de destino
+5. Leer un certificado y decir qué está comprobando
+6. Dejar un commit cuyo mensaje explique el cambio
+7. Entregar la documentación con la que otra persona podría implantarla
+
+---
+
+<!-- .slide: class="slide-compact" -->
+
+## Actividades de aula
+
+| # | Tarea |
+|---|---|
+| 1 | Dibujar Taller Norte: tres redes, qué se publica en cada una |
+| 2 | Tabla servicio–puerto–¿se abre al exterior? |
+| 3 | Traza de una cita: navegador → web → aplicación → datos |
+| 4 | Clasificar seis aplicaciones del entorno de cada cual |
+| 5 | Colección de Postman con un entorno de aula y el código de estado |
+| 6 | Un commit pequeño, con mensaje que explique el porqué |
+| 7 | Índice de la documentación de implantación del caso |
+
+---
+
+<!-- .slide: class="slide-subtopic" -->
+
+### Empezamos por el perímetro
+
+Internet, intranet y extranet.
+
+        </script>
+      </section>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/markdown/markdown.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/highlight/highlight.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/notes/notes.js"></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({
+        startOnLoad: false,
+        theme: 'dark',
+        securityLevel: 'loose',
+        fontFamily: 'inherit'
+      });
+    }
+    async function runMermaidOnSlide(slide) {
+      if (!slide || !window.mermaid) return;
+      var nodes = slide.querySelectorAll('.mermaid:not([data-processed])');
+      for (var i = 0; i < nodes.length; i++) {
+        try {
+          await mermaid.run({ nodes: [nodes[i]] });
+        } catch (e) {
+          console.warn('Mermaid:', e);
+        }
+      }
+    }
+    Reveal.initialize({
+      hash: true,
+      slideNumber: true,
+      plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+    });
+    Reveal.on('ready', function() {
+      runMermaidOnSlide(Reveal.getCurrentSlide());
+    });
+    Reveal.on('slidechanged', function(event) {
+      runMermaidOnSlide(event.currentSlide);
+    });
+  </script>
+</body>
+</html>
