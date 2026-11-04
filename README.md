@@ -1,5 +1,5 @@
 # MF0493_3
 
-Control de cambios con Git
+Estamos aprendiendo control de cambios con Git
 
-Repositorio: https://github.com/cesarlpb/MF0493_3
+- Repositorio: https://github.com/cesarlpb/MF0493_3
