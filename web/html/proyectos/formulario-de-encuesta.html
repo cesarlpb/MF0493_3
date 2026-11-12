@@ -8,40 +8,67 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/light.css">
 </head>
 <body>
-    <!--
-    -->
+    
 <h1 id="title">Formulario de Encuesta</h1>
 
 <p id="description">Completa este formulario para conocer tu opinión sobre nuestra página web.</p>
 
 <form id="survey-form">
     
-    <label id="name-label">Nombre:</label>
+    <label id="name-label">Nombre* :</label>
     <input id="name" type="text" placeholder="John Doe" required>
 
     <br>
 
-    <label id="email-label">Email:</label>
-    <input id="email" type="email" required>
+    <label id="email-label">Email* : </label>
+    <input id="email" type="email" placeholder="john.doe@gmail.com" required>
     
     <br>
     
-    <label id="number-label">Edad:</label>
-    <input id="number" type="number" min="18" max="99">
+    <label id="number-label">Edad (18-99):</label>
+    <input id="number" type="number" placeholder="25" min="18" max="99">
     
     <br>
     
-    <label for="">Select:</label>
-    <select name="" id="">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
+    <label>Tecnología favorita:</label>
+    <select id="dropdown">
+        <option value="html">HTML</option>
+        <option value="css">CSS</option>
+        <option value="js">JS</option>
     </select>
-    
-    <label for="">textarea</label>
-    <textarea name="" id="">esto es un campo de texto</textarea>
+
+    <br>
+
+    <label>¿Has usado agentes de IA?:</label>
+    <br>
+
+    <label>Sí</label>
+    <input type="radio" name="ai-tool" id="yes">
+    <label>No</label>
+    <input type="radio" name="ai-tool" id="no">
+
+    <br>
+    <br>
+
+    <label>¿Qué herramientas de IA has usado? (Puedes marcar más de una)</label>
+    <br>
+    <label>Claude</label>
+    <input type="checkbox" name="ai-tool-2" id="claude">
+    <label>Cursor</label>
+    <input type="checkbox" name="ai-tool-2" id="cursor">
+    <label>ChatGPT</label>
+    <input type="checkbox" name="ai-tool-2" id="chatgpt">
+    <label>Otros</label>
+    <input type="checkbox" name="ai-tool-2" id="other">
+
+    <br>
+    <br>
+
+    <label for="">Cuéntanos tu experiencia con herramientas de IA y proyectos que hayas hecho:</label>
+    <textarea name="" id="" placeholder="He desarrollado una app para aprender a programar web..."></textarea>
+
     <!-- Submit -->
-    <input type="button" value="Enviar">
+    <input id="submit" type="submit" value="Enviar">
 </form>
 
 </body>
