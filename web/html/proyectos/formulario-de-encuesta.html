@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survey Form</title>
+    <!-- Water CSS: hay modo light y dark -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/light.css">
+</head>
+<body>
+    <!--
+1. Debe tener un título de página en in elemento h1 con un id de title.
+2. Debes tener una explicación corta en un elemento p con un id de description.
+3. Debes tener un elemento form con un id de survey-form.
+4. Dentro del elemento de formulario debes tener un campo input requerido para ingresar tu nombre que tiene un id de name y un type de text.
+5. Dentro del elemento de formulario debes tener un campo input requerido para ingresar tu correo electrónico que tiene un id de email.
+6. Si ingresas un correo electrónico que no está formatado correctamente, deberías ver un error de validación HTML5.
+7. Dentro del elemento de formulario debes tener un campo input para ingresar un número que tiene un id de number.
+8. La entrada de números no debe aceptar caracteres no numéricos, ya sea impidiendo que los escribas o mostrando un error de validación HTML5 (dependiendo del navegador).
+9. Si ingresas números fuera del rango del input de número, que están definidos por los atributos min y max, deberías ver un error de validación HTML5.
+10. Para los campos de entrada de nombre, correo electrónico y número, debes tener elementos label correspondientes en el formulario que describan el propósito de cada campo con los siguientes ids: name-label, email-label y number-label.
+    -->
+
+<h2>Formulario</h2>
+<form id="form">
+    <label>Nombre:</label>
+    <input type="text">
+    
+    <br>
+    
+    <label>Edad:</label>
+    <input type="number">
+    
+    <br>
+    
+    <input type="button" value="Enviar">
+</form>
+
+</body>
+</html>
