@@ -9,30 +9,38 @@
 </head>
 <body>
     <!--
-1. Debe tener un título de página en in elemento h1 con un id de title.
-2. Debes tener una explicación corta en un elemento p con un id de description.
-3. Debes tener un elemento form con un id de survey-form.
-4. Dentro del elemento de formulario debes tener un campo input requerido para ingresar tu nombre que tiene un id de name y un type de text.
-5. Dentro del elemento de formulario debes tener un campo input requerido para ingresar tu correo electrónico que tiene un id de email.
-6. Si ingresas un correo electrónico que no está formatado correctamente, deberías ver un error de validación HTML5.
-7. Dentro del elemento de formulario debes tener un campo input para ingresar un número que tiene un id de number.
-8. La entrada de números no debe aceptar caracteres no numéricos, ya sea impidiendo que los escribas o mostrando un error de validación HTML5 (dependiendo del navegador).
-9. Si ingresas números fuera del rango del input de número, que están definidos por los atributos min y max, deberías ver un error de validación HTML5.
-10. Para los campos de entrada de nombre, correo electrónico y número, debes tener elementos label correspondientes en el formulario que describan el propósito de cada campo con los siguientes ids: name-label, email-label y number-label.
     -->
+<h1 id="title">Formulario de Encuesta</h1>
 
-<h2>Formulario</h2>
-<form id="form">
-    <label>Nombre:</label>
-    <input type="text">
+<p id="description">Completa este formulario para conocer tu opinión sobre nuestra página web.</p>
+
+<form id="survey-form">
+    
+    <label id="name-label">Nombre:</label>
+    <input id="name" type="text" placeholder="John Doe" required>
+
+    <br>
+
+    <label id="email-label">Email:</label>
+    <input id="email" type="email" required>
     
     <br>
     
-    <label>Edad:</label>
-    <input type="number">
+    <label id="number-label">Edad:</label>
+    <input id="number" type="number" min="18" max="99">
     
     <br>
     
+    <label for="">Select:</label>
+    <select name="" id="">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+    </select>
+    
+    <label for="">textarea</label>
+    <textarea name="" id="">esto es un campo de texto</textarea>
+    <!-- Submit -->
     <input type="button" value="Enviar">
 </form>
 
