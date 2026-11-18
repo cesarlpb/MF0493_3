@@ -1,0 +1,50 @@
+body {
+  background-color: burlywood;
+}
+
+p {
+  font-size: 35px;
+}
+
+.cards {
+  border-radius: 7px;
+  padding: 10px;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin: 10px;
+  width: 75px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid black;
+  height: calc(35px * 3 + 10px * 2 + 0px);
+  margin-top: 10px;
+}
+
+.cards div {
+  border: 0px solid black;
+  height: 35px;
+  padding-top: 10px;
+}
+
+.cards div:first-of-type {
+  width: 100%;
+  text-align: left;
+  padding-top: 10px;
+}
+
+.cards div:last-of-type {
+  width: 100%;
+  text-align: right;
+  padding-top: 10px;
+}
+
+#container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid black;
+  padding: 20px;
+}
