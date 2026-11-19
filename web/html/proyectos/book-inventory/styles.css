@@ -1,3 +1,40 @@
 table, th, td, tr {
   border: 1px solid black;
 }
+
+.status {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 10px;
+  font-size: 0.85em;
+  font-weight: 600;
+}
+
+.status.read {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.status.in-progress {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.status.to-read {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+tr.read {
+  color: aliceblue;
+  background: #2A7B9B;
+  background: linear-gradient(90deg, rgba(42, 123, 155, 1) 0%, rgba(87, 199, 133, 1) 50%, rgba(237, 221, 83, 1) 100%);
+}
+
+tr.to-read {
+
+}
+
+tr.in-progress{
+  
+}

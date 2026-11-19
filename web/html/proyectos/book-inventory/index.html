@@ -7,55 +7,77 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/light.css">
   <link rel="stylesheet" href="styles.css">
 </head>
+
+<body>
   <h1>Book Inventory</h1>
   <table>
     <thead>
-      <th>Title</th>
-      <th>Author</th>
-      <th>Category</th>
-      <th>Status</th>
-      <th>Rate</th>
+      <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Category</th>
+        <th>Status</th>
+        <th>Rate</th>
+      </tr>
     </thead>
     <tbody>
-      <tr>
+      <tr class="read">
         <td>Title #1</td>
         <td>Author #1</td>
         <td>Category #1</td>
-        <td>Status #1</td>
-        <td>⭐⭐⭐</td>
+        <td><span class="status read">Read</span></td>
+        <td>
+          <span class="rate two">
+          <span></span><span></span><span></span>
+          </span>
+        </td>
       </tr>
       <tr>
         <td>Title #2</td>
         <td>Author #2</td>
         <td>Category #2</td>
-        <td>Read</td>
-        <td>⭐⭐</td>
+        <td><span class="status to-read">To Read</span></td>
+        <td>
+          <span class="rate">
+          <span></span><span></span><span></span>
+          </span>
+        </td>
       </tr>
       <tr>
         <td>Title #3</td>
         <td>Author #3</td>
         <td>Category #3</td>
-        <td>To Read</td>
-        <td>⭐</td>
+        <td><span class="status in-progress">In Progress</span></td>
+        <td>
+          <span class="rate">
+          <span></span><span></span><span></span>
+          </span>
+        </td>
       </tr>
       <tr>
         <td>Title #4</td>
         <td>Author #4</td>
         <td>Category #4</td>
-        <td>In Progress</td>
-        <td>⭐⭐⭐⭐</td>
+        <td><span class="status in-progress">In Progress</span></td>
+        <td>
+          <span class="rate">
+          <span></span><span></span><span></span>
+          </span>
+        </td>
       </tr>
       <tr>
         <td>Title #5</td>
         <td>Author #5</td>
         <td>Category #5</td>
-        <td>To Read</td>
-        <td>⭐⭐⭐⭐⭐</td>
+        <td><span class="status to-read">To Read</span></td>
+        <td>
+          <span class="rate three">
+          <span></span><span></span><span></span>
+          </span>
+        </td>
       </tr>
     </tbody>
   </table>
-<body>
-
 </body>
 
 </html>
