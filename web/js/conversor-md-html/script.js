@@ -37,10 +37,30 @@ function convertMarkdown(){
   // para cada elemento hay que mirar que caso es:
   for(const line of arr){
     // aplicamos el cambio de md a html
-    if(line.startsWith("#")){
-      html += line.replace("# ", "<h1>") + "</h1>" + "\n"
+    if(line.startsWith("### ")){
+      html += line.replace("### ", "<h3>") + "</h3>" + "\n"
       console.log(line, html) // debug
     }
+    else if(line.startsWith("## ")){
+      html += line.replace("## ", "<h2>") + "</h2>" + "\n"
+      console.log(line, html) // debug
+      // Nota: si hay ## o ### sale mal -> Revisar
+    }
+    else if(line.startsWith("# ")){
+      html += line.replace("# ", "<h1>") + "</h1>" + "\n"
+      console.log(line, html) // debug
+      // Nota: si hay ## o ### sale mal -> Revisar
+    }
+    // Suponemos que no mezclamos h1, h2, h3 con strong
+    // negritas con strong: ** o __ --> <strong>
+    if(line.includes("**") || line.includes("__")){
+      html += line.replace("**", "<strong>")
+              .replace("__", "<strong>")
+              .replace("**", "</strong>")
+              .replace("__", "</strong>")
+      console.log(line, html) // debug
+    }
+    // cursiva con em: casi lo mismo
   }
   // 3. Buscamos que etiqueta debemos crear
 
