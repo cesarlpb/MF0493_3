@@ -34,8 +34,11 @@ function convertMarkdown(){
   let md = document.getElementById("markdown-input").value
   // 2. Leer cada línea: texto -> arr con split de "\n"
   let arr = md.split("\n") // \n indica salto de línea
+  let bprev = "" // línea anterior a la anterior
+  let prev = ""  // línea anterior, por defecto vacía
   // para cada elemento hay que mirar que caso es:
   for(const line of arr){
+    console.log("bprev, prev, line:", bprev, prev, line)
     // aplicamos el cambio de md a html
     if(line.startsWith("### ")){
       html += line.replace("### ", "<h3>") + "</h3>" + "\n"
@@ -57,12 +60,68 @@ function convertMarkdown(){
       html += line.replace("**", "<strong>")
               .replace("__", "<strong>")
               .replace("**", "</strong>")
-              .replace("__", "</strong>")
+              .replace("__", "</strong>") + "\n"
       console.log(line, html) // debug
     }
     // cursiva con em: casi lo mismo
+    else if(line.includes("*") || line.includes("_")){
+      html += line.replace("*", "<em>")
+              .replace("_", "<em>")
+              .replace("*", "</em>")
+              .replace("_", "</em>") + "\n"
+      console.log(line, html) // debug
+    }
+    // ![alt-text](image-source)
+    // <img src="image-source" alt="alt-text">
+    if(line.includes("![")){
+      let l = line.replace("![", "").replace(")", "")
+      let [alt, img] = l.split("](")
+      html += "<img src=\"" + img + " alt=\"" + alt + "\">"
+      console.log(line, html) // debug
+    }
+    // [link text](URL)
+    // <a href="URL">link text</a>
+    else if(line.startsWith("[") && line.includes("](") && line.includes(")")){
+      let l = line.replace("[", "").replace(")", "")
+      let [text, href] = l.split("](")
+      html += "<a href=\"" + href + "\">" + text + "</a>"
+      console.log(line, html) // debug
+    }
+    // > línea 1 
+    // > línea 2
+    // 
+    // <blockquote>línea 1
+    //             línea 2</blockquote>
+    if(line.startsWith("> ")){
+      // empezamos blockquote, continuamos, o cerramos blockquote
+      // empezar   -> bprev, prev, line = sin >, sin >, > 
+      // continuar -> bprev, prev, line = >, >, >
+      // cerrar    -> bprev, prev, line = >, >, sin >
+      if(!bprev.startsWith("> ") && !prev.startsWith("> ") && line.startsWith("> ")){
+        html += "<blockquote>" + line.replace("> ", "") + "\n"
+      } else if(bprev.startsWith("> ") && prev.startsWith("> ") && line.startsWith("> ")){
+        html += " " + line.replace("> ", "") + "\n"
+      } else {
+        html += " " + line.replace("> ", "") + "\n"
+      }
+    }
+    // caveats: si no hay mas línea no cierra
+    // solución: considerar índice del array
+    // cambiaremos por expresiones regulares
+    if(prev.startsWith("> ") && !line.startsWith("> ") ){
+      html += "</blockquote>\n" + line + "\n"
+      }
+    // deberiamos excluir todos los casos anteriores
+    if (line.trim().length > 0) {
+      html += "<p>" + line + "</p>\n"
+    }
+    if(prev){
+      bprev = prev
+    }
+    prev = line 
   }
-  // 3. Buscamos que etiqueta debemos crear
+  // 3. añadimos preview del HTML
+  document.getElementById("preview").innerHTML = html
 
   // 4. Escribimos resultado en Output: id "html-output"
   document.getElementById("html-output").innerText = html
