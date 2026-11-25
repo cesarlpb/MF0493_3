@@ -36,6 +36,17 @@ function convertMarkdown(){
   let arr = md.split("\n") // \n indica salto de línea
   let bprev = "" // línea anterior a la anterior
   let prev = ""  // línea anterior, por defecto vacía
+  // refactor con Regex
+  // casos h3, h2, h1
+  md = md.replace(/^### (.+)$/gm, "<h3>$1</h3>")
+  md = md.replace(/^## (.+)$/gm, "<h2>$1</h2>")
+  md = md.replace(/^# (.+)$/gm, "<h1>$1</h1>")
+  // casos: strong y em
+
+  // img y a
+
+  // blockquote
+  
   // para cada elemento hay que mirar que caso es:
   for(const line of arr){
     console.log("bprev, prev, line:", bprev, prev, line)
@@ -112,9 +123,9 @@ function convertMarkdown(){
       html += "</blockquote>\n" + line + "\n"
       }
     // deberiamos excluir todos los casos anteriores
-    if (line.trim().length > 0) {
-      html += "<p>" + line + "</p>\n"
-    }
+    //if (line.trim().length > 0) {
+    //  html += "<p>" + line + "</p>\n"
+    //}
     if(prev){
       bprev = prev
     }
