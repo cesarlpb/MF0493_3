@@ -50,7 +50,7 @@ function convertMarkdown(){
   md = md.replace(/!\[(.+?)\]\((.+?)\)/g, '<img alt="$1" src="$2">')
   md = md.replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2">$1</a>')
   // blockquote
-  
+  md = md.replace(/^[ \t]*> (.+)$/gm, "<blockquote>$1</blockquote>")
   // para cada elemento hay que mirar que caso es:
   for(const line of arr){
     console.log("bprev, prev, line:", bprev, prev, line)
