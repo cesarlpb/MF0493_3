@@ -42,7 +42,10 @@ function convertMarkdown(){
   md = md.replace(/^## (.+)$/gm, "<h2>$1</h2>")
   md = md.replace(/^# (.+)$/gm, "<h1>$1</h1>")
   // casos: strong y em
-
+  md = md.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+  md = md.replace(/\*(.+?)\*/g, "<em>$1</em>")
+  md = md.replace(/__(.+?)__/g, "<strong>$1</strong>")
+  md = md.replace(/_(.+?)_/g, "<em>$1</em>")
   // img y a
 
   // blockquote
