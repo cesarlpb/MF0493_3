@@ -47,7 +47,8 @@ function convertMarkdown(){
   md = md.replace(/__(.+?)__/g, "<strong>$1</strong>")
   md = md.replace(/_(.+?)_/g, "<em>$1</em>")
   // img y a
-
+  md = md.replace(/!\[(.+?)\]\((.+?)\)/g, '<img alt="$1" src="$2">')
+  md = md.replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2">$1</a>')
   // blockquote
   
   // para cada elemento hay que mirar que caso es:
